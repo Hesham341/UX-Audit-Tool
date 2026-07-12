@@ -1,0 +1,15 @@
+/* Aptos is a Microsoft font - using system font stack with Aptos first if available */
+* {
+  font-family: 'Aptos', 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 600;
+}
+
+/* Arabic font override */
+[dir="rtl"] *,
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select,
+[dir="rtl"] button {
+  font-family: 'Cairo', 'Segoe UI', -apple-system, system-ui, sans-serif;
+  letter-spacing: 0 !important;
+}

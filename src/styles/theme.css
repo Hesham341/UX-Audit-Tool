@@ -1,0 +1,480 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 600;
+  --font-weight-normal: 600;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* UX Mosaic brand tokens — used across all pages.
+     Update these to re-skin the entire app.
+     Palette: #1A1B2F · #273F48 · #617E8D · #4274BA · #ACD8AB · #6BB5AA
+
+     Color application rules:
+     - #1A1B2F  → dominant background (surface-base, surface-3)
+     - #273F48  → borders, dividers, chips only (border-accent, chip-surface)
+     - #617E8D  → muted icons, subtle accents (icon-muted, text-on-dark-subtle)
+     - #4274BA  → primary actions, active states, links (brand-blue)
+     - #ACD8AB  → success / positive states (brand-green)
+     - #6BB5AA  → supporting accents, insights (brand-teal)
+  */
+
+  /* Surface elevation hierarchy — all dark navy family */
+  --surface-base: #1A1B2F;     /* page background (deepest) */
+  --surface-1: #1E1F3A;        /* navbars, card section headers, subtle band lift */
+  --surface-2: #222341;        /* cards, panels — main content surfaces */
+  --surface-3: #161726;        /* inputs, sunken wells — recessed below base */
+  --surface-elevated: #2B2C52; /* dropdowns, hover panels, modals */
+
+  /* Brand actions */
+  --brand-blue: #4274BA;       /* primary actions, links, highlights */
+  --brand-blue-hover: #5589CC;
+  --brand-blue-soft: rgba(66, 116, 186, 0.15);
+  --brand-green: #ACD8AB;      /* success, positive */
+  --brand-green-soft: rgba(172, 216, 171, 0.15);
+  --brand-teal: #6BB5AA;       /* informational accent */
+  --brand-teal-soft: rgba(107, 181, 170, 0.15);
+  --on-brand: #ffffff;
+
+  /* Text */
+  --text-on-dark: #ffffff;
+  --text-on-dark-muted: #B6C4CB;
+  --text-on-dark-subtle: #8FA1AB;   /* #617E8D derived, accessible */
+
+  /* Borders — white-alpha for clean dark separations */
+  --border-on-dark: rgba(255, 255, 255, 0.07);
+  --border-on-dark-strong: rgba(255, 255, 255, 0.13);
+
+  /* #273F48 palette color — chips, badge borders, accent dividers only */
+  --border-accent: rgba(39, 63, 72, 0.65);
+  --chip-surface: rgba(39, 63, 72, 0.30);
+  --chip-border: rgba(39, 63, 72, 0.60);
+
+  /* #617E8D palette color — muted icons and subtle accents only */
+  --icon-muted: #617E8D;
+
+  /* Severity colors — intentional semantic exceptions for visual urgency */
+  --severity-critical: #FF5C5C;
+  --severity-critical-bg: rgba(255, 92, 92, 0.12);
+  --severity-critical-border: rgba(255, 92, 92, 0.28);
+  --severity-serious: #FF8D3A;
+  --severity-serious-bg: rgba(255, 141, 58, 0.12);
+  --severity-serious-border: rgba(255, 141, 58, 0.28);
+  --severity-medium: #E8B84B;
+  --severity-medium-bg: rgba(232, 184, 75, 0.12);
+  --severity-medium-border: rgba(232, 184, 75, 0.28);
+  --severity-low: #6BA4DC;
+  --severity-low-bg: rgba(107, 164, 220, 0.12);
+  --severity-low-border: rgba(107, 164, 220, 0.28);
+
+  /* ── Semantic text tokens (adapt between dark/light) ─────────────────────
+     Replaces all hardcoded text-white/XX opacity classes in components. */
+  --text-body:        #ffffff;                 /* primary text on surfaces */
+  --text-muted:       rgba(255,255,255,0.62);  /* secondary / descriptive text */
+  --text-subtle:      rgba(255,255,255,0.50);  /* tertiary labels, captions */
+  --text-faint:       rgba(255,255,255,0.40);  /* disabled-like, quaternary */
+  --text-placeholder: rgba(255,255,255,0.25);  /* input placeholder text */
+  --text-ghost:       rgba(255,255,255,0.20);  /* barely-visible accents */
+
+  /* ── Semantic border tokens ──────────────────────────────────────────────
+     Replaces all hardcoded border-white/[0.XX] classes in components. */
+  --border-faint:      rgba(255,255,255,0.06);  /* dividers within surfaces */
+  --border-subtle:     rgba(255,255,255,0.08);  /* card outlines (default) */
+  --border-default:    rgba(255,255,255,0.10);  /* input, field outlines */
+  --border-medium:     rgba(255,255,255,0.12);  /* menus, elevated panels */
+  --border-strong-alt: rgba(255,255,255,0.13);  /* interactive element borders */
+  --border-hover:      rgba(255,255,255,0.20);  /* hover-state border */
+  --border-hover-strong: rgba(255,255,255,0.25); /* strong hover border */
+
+  /* ── Surface interaction tokens ─────────────────────────────────────────
+     Replaces all hardcoded bg-white/[0.XX] hover/active classes. */
+  --surface-hover:        rgba(255,255,255,0.04);  /* subtle row hover */
+  --surface-hover-medium: rgba(255,255,255,0.06);  /* menu item hover */
+  --surface-active:       rgba(255,255,255,0.08);  /* active/pressed states */
+
+  /* ── Toggle track ────────────────────────────────────────────────────────*/
+  --toggle-track-off: rgba(255,255,255,0.15);  /* inactive toggle background */
+
+  /* ── Card shadows ────────────────────────────────────────────────────────*/
+  --card-shadow-default:  none;
+  --card-shadow-elevated: none;
+
+  /* ── Feature card gradient (marketing page) ──────────────────────────────*/
+  --card-feature-gradient: linear-gradient(180deg, var(--surface-2), rgba(18,24,38,0.92));
+  --card-top-highlight:    rgba(255,255,255,0.15);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 600;
+  --font-weight-normal: 600;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* ─── Light theme ─────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  /* Base shadcn/ui variables */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+  --primary: #0F172A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #F1F5F9;
+  --accent-foreground: #0F172A;
+  --border: #E2E8F0;
+  --input: #FFFFFF;
+  --input-background: #FFFFFF;
+  --switch-background: #CBD5E1;
+  --ring: #94A3B8;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #0F172A;
+  --sidebar-primary: #0F172A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F1F5F9;
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #94A3B8;
+
+  /* Surfaces — proper depth hierarchy for light mode */
+  --surface-base:     #F8FAFC;   /* page background — lightest cool gray */
+  --surface-1:        #FFFFFF;   /* navbar, card section headers */
+  --surface-2:        #FFFFFF;   /* cards, panels — pure white elevation */
+  --surface-3:        #F1F5F9;   /* inputs, sunken wells — clearly recessed */
+  --surface-elevated: #FFFFFF;   /* dropdowns, modals — with shadow */
+
+  /* Brand — same hue family, darkened for legibility on white */
+  --brand-blue:       #3464A8;
+  --brand-blue-hover: #4274BA;
+  --brand-blue-soft:  rgba(52, 100, 168, 0.10);
+  --brand-green:      #2E7D46;
+  --brand-green-soft: rgba(46, 125, 70, 0.10);
+  --brand-teal:       #2A7A72;
+  --brand-teal-soft:  rgba(42, 122, 114, 0.10);
+  --on-brand: #ffffff;
+
+  /* Text — full contrast hierarchy for light surfaces */
+  --text-on-dark:         #0F172A;   /* primary — near black */
+  --text-on-dark-muted:   #475569;   /* secondary */
+  --text-on-dark-subtle:  #64748B;   /* tertiary / labels */
+
+  /* Base borders — visible but not heavy */
+  --border-on-dark:        rgba(15, 23, 42, 0.08);
+  --border-on-dark-strong: rgba(15, 23, 42, 0.14);
+  --border-accent:         rgba(39, 63, 72, 0.15);
+  --chip-surface:          rgba(39, 63, 72, 0.06);
+  --chip-border:           rgba(39, 63, 72, 0.18);
+  --icon-muted:            #64748B;
+
+  /* ── Semantic text tokens ─────────────────────────────────────────────── */
+  --text-body:        #0F172A;   /* replaces text-white */
+  --text-muted:       #475569;   /* replaces text-white/60–70 */
+  --text-subtle:      #64748B;   /* replaces text-white/50 */
+  --text-faint:       #94A3B8;   /* replaces text-white/35–40 */
+  --text-placeholder: #94A3B8;   /* replaces placeholder:text-white/25 */
+  --text-ghost:       #B0BEC5;   /* replaces text-white/20 */
+
+  /* ── Semantic border tokens ──────────────────────────────────────────── */
+  --border-faint:        #EEF2F8;   /* replaces border-white/[0.06] */
+  --border-subtle:       #E8EEF6;   /* replaces border-white/[0.08] — card outline */
+  --border-default:      #E2E8F0;   /* replaces border-white/[0.10] — inputs */
+  --border-medium:       #DCE3EE;   /* replaces border-white/[0.12] — menus */
+  --border-strong-alt:   #D4DCEA;   /* replaces border-white/[0.13] */
+  --border-hover:        #CBD5E1;   /* replaces hover:border-white/20 */
+  --border-hover-strong: #B8C5D4;   /* replaces hover:border-white/25 */
+
+  /* ── Surface interaction tokens ─────────────────────────────────────── */
+  --surface-hover:        rgba(15,23,42,0.03);   /* replaces bg-white/[0.04] */
+  --surface-hover-medium: rgba(15,23,42,0.05);   /* replaces bg-white/[0.06] */
+  --surface-active:       rgba(15,23,42,0.07);   /* replaces bg-white/[0.08] */
+
+  /* ── Toggle track ─────────────────────────────────────────────────────── */
+  --toggle-track-off: #CBD5E1;
+
+  /* ── Card shadows — soft elevation for light surfaces ─────────────────── */
+  --card-shadow-default:  0 1px 3px rgba(15,23,42,0.07), 0 1px 2px rgba(15,23,42,0.04);
+  --card-shadow-elevated: 0 10px 40px rgba(15,23,42,0.08), 0 2px 8px rgba(15,23,42,0.04);
+
+  /* ── Feature card gradient (marketing page) ──────────────────────────── */
+  --card-feature-gradient: linear-gradient(180deg, #FFFFFF, #F5F7FC);
+  --card-top-highlight:    rgba(15,23,42,0.04);
+
+  /* Severity — tighter alpha for light backgrounds */
+  --severity-critical-bg:     rgba(255, 92, 92, 0.08);
+  --severity-critical-border: rgba(255, 92, 92, 0.24);
+  --severity-serious-bg:      rgba(255, 141, 58, 0.08);
+  --severity-serious-border:  rgba(255, 141, 58, 0.24);
+  --severity-medium-bg:       rgba(232, 184, 75, 0.08);
+  --severity-medium-border:   rgba(232, 184, 75, 0.24);
+  --severity-low-bg:          rgba(107, 164, 220, 0.08);
+  --severity-low-border:      rgba(107, 164, 220, 0.24);
+}
+
+/* ─── View-transition theme reveal ───────────────────────────────────────── */
+@keyframes vt-reveal {
+  from { clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+  to   { clip-path: circle(160% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+}
+
+::view-transition-new(root) {
+  animation: vt-reveal 0.85s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+::view-transition-old(root) {
+  animation: none;
+  z-index: -1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button, a {
+    transition: opacity 0.15s ease, filter 0.15s ease, background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+
+  button:hover:not(:disabled), a[href]:hover {
+    opacity: 0.85;
+  }
+
+  button:active:not(:disabled), a[href]:active {
+    transform: scale(0.98);
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+
+  textarea {
+    font-weight: var(--font-weight-normal);
+  }
+}
+
+/* Force semibold on all inputs/textareas — overrides any design-system reset */
+input,
+textarea,
+select {
+  font-weight: 600 !important;
+}
+
+/* ─── RTL (Arabic) layout support ────────────────────────────────────────── */
+
+/* Reverse flex-row containers in RTL */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Navigation: logo+links group uses border-right separator in LTR → border-left in RTL */
+[dir="rtl"] .nav-logo-sep {
+  border-right: none;
+  border-left: 1px solid var(--border-on-dark);
+}
+
+/* Text direction baseline — inputs/textareas start from the right in RTL */
+[dir="rtl"] input,
+[dir="rtl"] textarea {
+  text-align: start;
+}
+
+/* Ensure select elements align correctly in RTL */
+[dir="rtl"] select {
+  text-align: start;
+}
+
+/* ── Logical-position borders: flip border-r ↔ border-l where used as separators */
+[dir="rtl"] .ltr-border-r {
+  border-right: none !important;
+  border-left: 1px solid var(--border-on-dark) !important;
+}
+
+/* ── Preserve LTR for code, URLs, numbers ─────────────────────────────────── */
+[dir="rtl"] input[type="url"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="date"] {
+  direction: ltr;
+  text-align: start;
+}
+
+/* ── Placeholder direction ─────────────────────────────────────────────────── */
+[dir="rtl"] input::placeholder,
+[dir="rtl"] textarea::placeholder {
+  text-align: start;
+}
+
+/* ── Pointer cursor on all interactive elements ────────────────────────────── */
+button,
+a,
+[role="button"],
+label[for],
+select,
+summary {
+  cursor: pointer;
+}
+
+button:disabled,
+a[aria-disabled="true"] {
+  cursor: not-allowed;
+}
